@@ -95,10 +95,8 @@ class TasksController < ApplicationController
     def set_user
       if params[:user_id].present?
         @user = User.find(params[:user_id])
-      elsif @task.present?
-        @user = @task.user
       else
-        @user = User.first
+        @user = @task.user if @task.present?
       end
     end
 

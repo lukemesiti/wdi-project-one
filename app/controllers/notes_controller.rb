@@ -76,16 +76,6 @@ class NotesController < ApplicationController
       end
     end
 
-    # def set_user
-    #   if params[:user_id].present?
-    #     @user = User.find(params[:user_id])
-    #   elsif @task.present?
-    #     @user = @task.user
-    #   else
-    #     @user = User.first
-    #   end
-    # end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
       params.require(:note).permit(:name, :details, :task_id)
