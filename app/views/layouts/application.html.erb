@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Threethrees</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        <h1 id="logo">THREEthrees</h1>
+
+        <% if logged_in? %>
+            <h2>Welcome, <%= @current_user.name %></h2>
+            <p><%= link_to 'logout', session_path, :method => :delete %></p>
+        <% end %>
+        
+        <%= notice %>
+
+        <% if logged_in? %>
+            <div class="menu" class="clearfix">
+                <ul>
+                    <li><%= link_to "All Tasks", user_tasks_path(@current_user) %></li>
+                    <li><%= link_to "Daily Tasks", user_tasks_path(:user_id => @current_user.id, :category => "daily") %></li>
+                    <li><%= link_to "Weekly Tasks", user_tasks_path(:user_id => @current_user.id, :category => "weekly") %></li>
+                    <li><%= link_to "Yearly Tasks", user_tasks_path(:user_id => @current_user.id, :category => "yearly") %></li>
+                    <li><%= link_to "Past Tasks", user_tasks_path(:user_id => @current_user.id, :complete => "true") %></li>
+                </ul>
+            </div><!-- menu -->
+        <% end %>
+
+        <div class="content" class="clearfix">
+            <%= yield %>
+        </div><!-- content -->
+
+
+        <footer>
+            <ul>
+                <li><%= link_to "about us", "/pages/about_us" %></li>
+                <li><%= link_to "contact us", "/pages/contact_us" %></li>
+                <li><%= link_to "home", "/pages/home" %></li>
+            </ul>
+        </footer>
+
+    </div><!-- container -->
+
+</body>
+</html>

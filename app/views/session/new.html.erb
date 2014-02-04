@@ -1,0 +1,10 @@
+
+<p><%= link_to 'sign up?', new_user_path %></p>
+
+<%= form_tag do %>
+    <%= label_tag :username %>
+    <%= text_field_tag :username %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+    <%= submit_tag 'login' %>
+<% end %>

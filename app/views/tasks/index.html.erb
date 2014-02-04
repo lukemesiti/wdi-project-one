@@ -1,0 +1,17 @@
+<h1>Listing tasks</h1>
+
+<% @tasks.each do |task| %>
+  <ul>
+    <li>Name - <%= task.name %></li>
+    <li>Category - <%= task.category %></li>
+    <li>Description - <%= task.description %></li>
+    <li>Complete - <%= task.complete %></li>
+    <li><%= link_to 'Show', task %></li>
+    <li><%= link_to 'Edit', edit_task_path(task) %></li>
+    <li><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+<% end %>
+<br>
+
+
+<%= link_to 'New Task', new_user_task_path %>
