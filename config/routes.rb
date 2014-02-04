@@ -17,6 +17,6 @@ Threethrees::Application.routes.draw do
 
   # get ":action" => "pages#:action"
 
-  root :to => 'session#new'
+  root :to => 'tasks#index'
 
 end

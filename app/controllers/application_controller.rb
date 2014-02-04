@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
   def authenticate
     if session[:user_id]
       @current_user = User.find(session[:user_id])
-    # elsif new_user_path
-    #   redirect_to new_user_path
     else
       redirect_to new_session_path, :notice => 'login to begin!'
     end
