@@ -1,22 +1,17 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :set_user
   before_action :check_user
 
   # GET /tasks
   # GET /tasks.json
   def index
-    if @user
       if params[:category].present?
-        @tasks = @user.tasks.where("category = ?", params[:category])
+        @tasks = @current_user.tasks.where("category = ?", params[:category])
       elsif params[:complete].present?
-        @tasks = @user.tasks.where("complete = ?", params[:complete])
+        @tasks = @current_user.tasks.where("complete = ?", params[:complete])
       else
-        @tasks = @user.tasks.all
+        @tasks = @current_user.tasks.all
       end
-    else
-      @tasks = Task.all
-    end
   end
 
   # GET /tasks/1
@@ -90,14 +85,6 @@ class TasksController < ApplicationController
     def set_task
       @task = Task.find(params[:id])
       @notes = @task.notes
-    end
-
-    def set_user
-      if params[:user_id].present?
-        @user = User.find(params[:user_id])
-      else
-        @user = @task.user if @task.present?
-      end
     end
 
     def check_user

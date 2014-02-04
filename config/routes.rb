@@ -15,8 +15,6 @@ Threethrees::Application.routes.draw do
   get "pages/contact_us"
   get "pages/home"
 
-  # get ":action" => "pages#:action"
-
-  root :to => 'tasks#index'
+  root 'tasks#index'
 
 end

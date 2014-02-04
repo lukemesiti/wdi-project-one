@@ -33,14 +33,15 @@
             <%= yield %>
         </div><!-- content -->
 
-
-        <footer>
-            <ul>
-                <li><%= link_to "about us", "/pages/about_us" %></li>
-                <li><%= link_to "contact us", "/pages/contact_us" %></li>
-                <li><%= link_to "home", "/pages/home" %></li>
-            </ul>
-        </footer>
+        <% if logged_in? %>
+            <footer>
+                <ul>
+                    <li><%= link_to "about us", "/pages/about_us" %></li>
+                    <li><%= link_to "contact us", "/pages/contact_us" %></li>
+                    <li><%= link_to "home", "/pages/home" %></li>
+                </ul>
+            </footer>
+        <% end %>
 
     </div><!-- container -->
 
