@@ -6,7 +6,6 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
       if params[:category] == 'daily'
-        # @tasks = @current_user.tasks.where("category = ?", params[:category])
         @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'daily', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
       elsif params[:category] == 'weekly'
         @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'weekly', Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
@@ -24,6 +23,7 @@ class TasksController < ApplicationController
         weekly = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'weekly', Time.zone.now.beginning_of_week, Time.zone.now.end_of_week) 
         yearly = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'yearly', Time.zone.now.beginning_of_year, Time.zone.now.end_of_year) 
         @tasks = daily + weekly + yearly
+        @tasks.sort_by { |t| t.category }
       end
   end
 
