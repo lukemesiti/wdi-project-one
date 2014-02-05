@@ -9,14 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1 id="logo">THREEthrees</h1>
-
-            <% if logged_in? %>
-                <h2>Welcome, <%= @current_user.name %></h2>
-                <p><%= link_to 'logout', session_path, :method => :delete %></p>
-            <% end %>
-            
-            <p><%= notice %></p>
+            <%= render :partial => "shared/header" %>
         </header>
 
         <% if logged_in? %>
