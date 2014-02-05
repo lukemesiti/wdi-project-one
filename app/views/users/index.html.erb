@@ -1,31 +1,13 @@
 <% content_for :title, "Listing Users" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Password</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% @users.each do |user| %>
+  <ul>
+    <li>Name - <%= user.name %></li>
+    <li>Email - <%= user.email %></li>
+    <li><%= link_to 'Show', user %></li>
+    <li><%= link_to 'Edit', edit_user_path(user) %></li>
+    <li><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+<% end %>
 
 <%= link_to 'New User', new_user_path %>

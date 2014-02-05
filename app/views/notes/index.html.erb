@@ -1,31 +1,14 @@
 <% content_for :title, "Listing Notes" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Details</th>
-      <th>Task</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @notes.each do |note| %>
-      <tr>
-        <td><%= note.name %></td>
-        <td><%= note.details %></td>
-        <td><%= note.task.name %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% @notes.each do |note| %>
+  <ul>
+    <li>Name - <%= note.name %></li>
+    <li>Details - <%= note.details %></li>
+    <li><%= link_to 'Show', note %></li>
+    <li><%= link_to 'Edit', edit_note_path(note) %></li>
+    <li><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+<% end %>
 
 
