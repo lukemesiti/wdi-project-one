@@ -13,7 +13,6 @@
 <% end %>
 <br>
 
-<% if params[:complete].to_s == '' %>
+<% unless (params[:complete].to_s == 'true') || (params[:previous].to_s == 'true')   %>
     <%= link_to 'New Task', new_user_task_path(@current_user) %>
-
 <% end %>

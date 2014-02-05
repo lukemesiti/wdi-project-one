@@ -8,10 +8,5 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
 <%= link_to 'Edit', edit_user_path(@current_user) %> |
 <%= link_to 'Back', user_tasks_path(@current_user) %>
