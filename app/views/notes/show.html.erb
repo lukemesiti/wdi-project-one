@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @note.name %>
@@ -12,7 +10,7 @@
 
 <p>
   <strong>Task:</strong>
-  <%= @note.task %>
+  <%= @note.task.name %>
 </p>
 
 <%= link_to 'Edit', edit_note_path(@note) %> |

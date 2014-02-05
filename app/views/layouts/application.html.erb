@@ -8,14 +8,16 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="logo">THREEthrees</h1>
+        <header>
+            <h1 id="logo">THREEthrees</h1>
 
-        <% if logged_in? %>
-            <h2>Welcome, <%= @current_user.name %></h2>
-            <p><%= link_to 'logout', session_path, :method => :delete %></p>
-        <% end %>
-        
-        <%= notice %>
+            <% if logged_in? %>
+                <h2>Welcome, <%= @current_user.name %></h2>
+                <p><%= link_to 'logout', session_path, :method => :delete %></p>
+            <% end %>
+            
+            <p><%= notice %></p>
+        </header>
 
         <% if logged_in? %>
             <div class="menu" class="clearfix">

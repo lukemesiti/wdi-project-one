@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @task.name %>
@@ -21,30 +19,16 @@
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', user_tasks_path(@task.user) %>
+<%= link_to 'Back', user_tasks_path(@task.user) %> |
 <%= link_to 'New Note', new_task_note_path(@task) %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Details</th>
-      <th>Task</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @notes.each do |note| %>
-      <tr>
-        <td><%= note.name %></td>
-        <td><%= note.details %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <ul>
+        <li>Name - <%= note.name %></li>
+        <li>Details - <%= note.details %></li>
+        <li><%= link_to 'Show', note %></li>
+        <li><%= link_to 'Edit', edit_note_path(note) %></li>
+        <li><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      </ul>
     <% end %>
-  </tbody>
-</table>
+
