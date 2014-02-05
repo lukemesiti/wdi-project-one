@@ -22,12 +22,13 @@
         <% if logged_in? %>
             <div class="menu" class="clearfix">
                 <ul>
-                    <li><%= link_to "Edit Profile", edit_user_path(@current_user) %></li>
-                    <li><%= link_to "All Tasks", user_tasks_path(@current_user) %></li>
+                    <li><%= link_to "All Current Tasks", user_tasks_path(@current_user) %></li>
                     <li><%= link_to "Daily Tasks", user_tasks_path(:user_id => @current_user.id, :category => "daily") %></li>
                     <li><%= link_to "Weekly Tasks", user_tasks_path(:user_id => @current_user.id, :category => "weekly") %></li>
                     <li><%= link_to "Yearly Tasks", user_tasks_path(:user_id => @current_user.id, :category => "yearly") %></li>
-                    <li><%= link_to "Past Tasks", user_tasks_path(:user_id => @current_user.id, :complete => "true") %></li>
+                    <li><%= link_to "Completed Tasks", user_tasks_path(:user_id => @current_user.id, :complete => "true") %></li>
+                    <li><%= link_to "Previous Tasks", user_tasks_path(:user_id => @current_user.id, :previous => "true") %></li>
+                    <li><%= link_to "Edit Profile", edit_user_path(@current_user) %></li>
                 </ul>
             </div><!-- menu -->
         <% end %>

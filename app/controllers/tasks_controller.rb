@@ -5,13 +5,25 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-      if params[:category].present?
-        @tasks = @current_user.tasks.where("category = ?", params[:category])
+      if params[:category] == 'daily'
+        # @tasks = @current_user.tasks.where("category = ?", params[:category])
+        @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'daily', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
+      elsif params[:category] == 'weekly'
+        @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'weekly', Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+      elsif params[:category] == 'yearly'
+        @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'yearly', Time.zone.now.beginning_of_year, Time.zone.now.end_of_year)
       elsif params[:complete].present?
         @tasks = @current_user.tasks.where("complete = ?", params[:complete])
-        @complete = true
+      elsif params[:previous].present?
+        daily = @current_user.tasks.where("category = ? AND created_at <= ?", 'daily', Time.zone.now.beginning_of_day) # previous daily
+        weekly = @current_user.tasks.where("category = ? AND created_at <= ?", 'weekly', Time.zone.now.beginning_of_week) # previous week
+        yearly = @current_user.tasks.where("category = ? AND created_at <= ?", 'yearly', Time.zone.now.beginning_of_year) # previous week
+        @tasks = daily + weekly + yearly
       else
-        @tasks = @current_user.tasks.all
+        daily = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'daily', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
+        weekly = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'weekly', Time.zone.now.beginning_of_week, Time.zone.now.end_of_week) 
+        yearly = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'yearly', Time.zone.now.beginning_of_year, Time.zone.now.end_of_year) 
+        @tasks = daily + weekly + yearly
       end
   end
 
