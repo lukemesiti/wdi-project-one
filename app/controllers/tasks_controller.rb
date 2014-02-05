@@ -9,6 +9,7 @@ class TasksController < ApplicationController
         @tasks = @current_user.tasks.where("category = ?", params[:category])
       elsif params[:complete].present?
         @tasks = @current_user.tasks.where("complete = ?", params[:complete])
+        @complete = true
       else
         @tasks = @current_user.tasks.all
       end
