@@ -13,7 +13,7 @@ Threethrees::Application.routes.draw do
 
   get "pages/about_us"
   get "pages/contact_us"
-  get "pages/home"
+  get "pages/references"
 
   root 'tasks#index'
 

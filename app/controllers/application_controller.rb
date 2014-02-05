@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     if session[:user_id]
       @current_user = User.find(session[:user_id])
     else
-      redirect_to new_session_path, :notice => 'login to begin!'
+      redirect_to new_session_path
     end
   end
 
