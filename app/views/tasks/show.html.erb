@@ -1,33 +1,28 @@
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
+<% content_for :title, "Show Task" %>
 
-<p>
-  <strong>Category:</strong>
-  <%= @task.category %>
-</p>
+<div class="task_block">
+    <ul>
+      <li><%= @task.name %>, <%= @task.category %></li>
+      <li><%= @task.description %></li>
+      <li><%= link_to 'Edit', edit_task_path(@task) %> | <%= link_to 'Back', user_tasks_path(@task) %> | <%= link_to 'New Note', new_task_note_path(@task) %></li>
+  </ul>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
 
-<p>
-  <strong>Complete:</strong>
-  <%= @task.complete %>
-</p>
+<% if @notes.present? %>
+<div class="notes_header">
+    <ul>
+    <li>Notes,</li>
+  </ul>
+</div>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', user_tasks_path(@task.user) %> |
-<%= link_to 'New Note', new_task_note_path(@task) %>
-
-    <% @notes.each do |note| %>
+  <% @notes.each do |note| %>
+    <div class="notes_block">
       <ul>
-        <li>Name - <%= note.name %></li>
-        <li>Details - <%= note.details %></li>
-        <li><%= link_to 'Edit', edit_note_path(note) %></li>
-        <li><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <li><%= note.name %>, <%= note.details %></li>
+        <li><%= link_to 'Edit', edit_note_path(note) %> | <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       </ul>
-    <% end %>
+    </div>
+  <% end %>
+<% end %>
 

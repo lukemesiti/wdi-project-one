@@ -19,11 +19,13 @@
     <%= f.label :category %><br>
     <%= f.select :category, [['daily', 'daily'], ['weekly', 'weekly'], ['yearly', 'yearly']] %>
   </div>
+    <%= f.hidden_field :user_id, value: @current_user.id %>
+    <%= f.hidden_field :complete, value: "false" %>
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "but" %>
   </div>
 <% end %>

@@ -1,17 +1,12 @@
-<p>
-  <strong>Name:</strong>
-  <%= @note.name %>
-</p>
+
+<p><strong>Note</strong>, <%= @note.name %></p>
 
 <p>
   <strong>Details:</strong>
   <%= @note.details %>
 </p>
 
-<p>
-  <strong>Task:</strong>
-  <%= @note.task.name %>
-</p>
+
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
 <%= link_to 'Back', task_notes_path(@note.task_id) %>

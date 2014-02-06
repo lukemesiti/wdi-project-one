@@ -2,18 +2,19 @@
 <html>
 <head>
   <title>Threethrees</title>
+  <link href='http://fonts.googleapis.com/css?family=Fenix' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
     <div class="container">
-        <header>
+        <div class="head clearfix">
             <%= render :partial => "shared/header" %>
-        </header>
+        </div>
 
         <% if logged_in? %>
-            <div class="menu" class="clearfix">
+            <div class="menu">
                 <ul>
                     <li><%= link_to "All Current Tasks", user_tasks_path(@current_user) %></li>
                     <li><%= link_to "Daily Tasks", user_tasks_path(:user_id => @current_user.id, :category => "daily") %></li>
@@ -26,18 +27,18 @@
             </div><!-- menu -->
         <% end %>
 
-        <div class="content" class="clearfix">
+        <div class="content">
             <%= yield %>
         </div><!-- content -->
 
         <% if logged_in? %>
-            <footer>
+            <div class="foot">
                 <ul>
                     <li><%= link_to "about us", "/pages/about_us" %></li>
                     <li><%= link_to "contact us", "/pages/contact_us" %></li>
                     <li><%= link_to "references", "/pages/references" %></li>
                 </ul>
-            </footer>
+            </div>
         <% end %>
 
     </div><!-- container -->

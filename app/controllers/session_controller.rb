@@ -10,7 +10,7 @@ class SessionController < ApplicationController
             session[:user_id] = user.id
             redirect_to user_tasks_path(user.id)
         else
-            redirect_to new_session_path, :notice => 'Login incorrect'
+            redirect_to new_session_path, :alert => 'Login incorrect'
         end
     end
     

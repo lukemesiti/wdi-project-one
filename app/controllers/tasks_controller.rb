@@ -103,7 +103,7 @@ class TasksController < ApplicationController
     def check_user
       if params[:user_id].present?
         if params[:user_id].to_i != @current_user.id.to_i
-          redirect_to user_tasks_path(@current_user.id), :notice => "Don't try to change the user!"
+          redirect_to user_tasks_path(@current_user.id) # , :notice => "Don't try to change the user!"
         end
       end
     end

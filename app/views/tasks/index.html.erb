@@ -1,18 +1,20 @@
 <% content_for :title, "Listing Tasks" %>
 
+<% unless (params[:complete].to_s == 'true') || (params[:previous].to_s == 'true') %>
+    <div class="add_new_task">
+        <%= link_to 'Add New Task', new_user_task_path(@current_user) %>
+    </div>
+<% end %>
+
 <% @tasks.each do |task| %>
-  <ul>
-    <li>Name - <%= task.name %></li>
-    <li>Category - <%= task.category %></li>
-    <li>Description - <%= task.description %></li>
-    <li>Complete - <%= task.complete %></li>
-    <li><%= link_to 'Show', task %></li>
-    <li><%= link_to 'Edit', edit_task_path(task) %></li>
-    <li><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-  </ul>
+    <div class="task_block">
+        <ul>
+            <li><%= task.name %>, <%= task.category %></li>
+            <li><%= task.description %></li>
+            <li><%= link_to 'Show', task %> | <%= link_to 'Edit', edit_task_path(task) %> | <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>   
+    </div>
 <% end %>
 <br>
 
-<% unless (params[:complete].to_s == 'true') || (params[:previous].to_s == 'true')   %>
-    <%= link_to 'New Task', new_user_task_path(@current_user) %>
-<% end %>
+

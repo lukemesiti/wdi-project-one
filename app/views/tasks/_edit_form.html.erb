@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.select :category, [['daily', 'daily'], ['weekly', 'weekly'], ['yearly', 'yearly']] %>
+    <%= f.select :category, [['daily', 'daily'], ['weekly', 'weekly'], ['yearly', 'yearly']], {} , :class => 'select' %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -29,6 +29,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "but" %>
   </div>
 <% end %>
