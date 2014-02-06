@@ -7,7 +7,7 @@
     <li>Details - <%= note.details %></li>
     <li><%= link_to 'Show', note %></li>
     <li><%= link_to 'Edit', edit_note_path(note) %></li>
-    <li><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <li><%= link_to 'Delete', note, method: :delete, data: { confirm: 'Are you sure?' } %></li>
   </ul>
 <% end %>
 

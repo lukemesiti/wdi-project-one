@@ -2,5 +2,5 @@
 
 <%= render 'edit_form' %>
 
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', user_tasks_path(@task) %>
+<%= link_to 'Show', @task, :class => "modify" %> : :
+<%= link_to 'Back', user_tasks_path(@task), :class => "modify" %>

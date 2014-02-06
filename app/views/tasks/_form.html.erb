@@ -12,12 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, required: true %>
-  </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.select :category, [['daily', 'daily'], ['weekly', 'weekly'], ['yearly', 'yearly']] %>
+    <% @current = params[:category] %>
+    <% if params[:category] == 'all' %>
+      <%= f.select :category, [['daily', 'daily'], ['weekly', 'weekly'], ['yearly', 'yearly']] %>
+    <% else %>
+      <% f.hidden_field :category, value: params[:category] %><%= params[:category] %>
+    <% end %>
+  </div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, required: true %>
   </div>
     <%= f.hidden_field :user_id, value: @current_user.id %>
     <%= f.hidden_field :complete, value: "false" %>

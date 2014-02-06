@@ -4,23 +4,19 @@
     <ul>
       <li><%= @task.name %>, <%= @task.category %></li>
       <li><%= @task.description %></li>
-      <li><%= link_to 'Edit', edit_task_path(@task) %> | <%= link_to 'Back', user_tasks_path(@task) %> | <%= link_to 'New Note', new_task_note_path(@task) %></li>
+      <li><%= link_to 'Edit', edit_task_path(@task), :class => "modify" %> : : <%= link_to 'Back', user_tasks_path(@task), :class => "modify" %> : : <%= link_to 'New Note', new_task_note_path(@task), :class => "modify" %></li>
   </ul>
 </div>
 
 
 <% if @notes.present? %>
-<div class="notes_header">
-    <ul>
-    <li>Notes,</li>
-  </ul>
-</div>
+<div class="notes_header">Notes -</div>
 
   <% @notes.each do |note| %>
     <div class="notes_block">
       <ul>
         <li><%= note.name %>, <%= note.details %></li>
-        <li><%= link_to 'Edit', edit_note_path(note) %> | <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <li><%= link_to 'Edit', edit_note_path(note), :class => "modify" %> : : <%= link_to 'Delete', note, method: :delete, data: { confirm: 'Are you sure?' }, :class => "modify" %></li>
       </ul>
     </div>
   <% end %>

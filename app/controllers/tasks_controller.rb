@@ -5,15 +5,21 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @current = :all
       if params[:category] == 'daily'
+        @current = :daily
         @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'daily', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
       elsif params[:category] == 'weekly'
+        @current = :weekly
         @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'weekly', Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
       elsif params[:category] == 'yearly'
+        @current = :yearly
         @tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'yearly', Time.zone.now.beginning_of_year, Time.zone.now.end_of_year)
       elsif params[:complete].present?
+        @current = :complete
         @tasks = @current_user.tasks.where("complete = ?", params[:complete])
       elsif params[:previous].present?
+        @current = :previous
         daily = @current_user.tasks.where("category = ? AND created_at <= ?", 'daily', Time.zone.now.beginning_of_day) # previous daily
         weekly = @current_user.tasks.where("category = ? AND created_at <= ?", 'weekly', Time.zone.now.beginning_of_week) # previous week
         yearly = @current_user.tasks.where("category = ? AND created_at <= ?", 'yearly', Time.zone.now.beginning_of_year) # previous week
@@ -35,6 +41,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    # @current = :alltasks
   end
 
   # GET /tasks/1/edit
@@ -51,11 +58,11 @@ class TasksController < ApplicationController
   yearly_tasks = @current_user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", 'yearly', Time.zone.now.beginning_of_year, Time.zone.now.end_of_year).count
 
     if @task.category == "daily" && daily_tasks >= 3
-      redirect_to user_tasks_path, :notice => 'daily limit reached '
+      redirect_to user_tasks_path, :alert => 'daily limit reached '
     elsif @task.category == "weekly" && weekly_tasks >= 3
-      redirect_to user_tasks_path, :notice => 'weekly limit reached '
+      redirect_to user_tasks_path, :alert => 'weekly limit reached '
     elsif @task.category == "yearly" && yearly_tasks >= 3
-      redirect_to user_tasks_path, :notice => 'yearly limit reached '
+      redirect_to user_tasks_path, :alert => 'yearly limit reached '
     else
       respond_to do |format|
         if @task.save

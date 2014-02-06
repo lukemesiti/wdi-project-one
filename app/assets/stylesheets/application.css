@@ -75,15 +75,19 @@ div h2 {
     min-height: 30px;
 }
 
+.head a {
+    padding: 0;
+}
+
 .notice {
-    padding: 10px 0 0 0;
+    padding: 10px 10px 0 0;
     height: 10px;
     color: #27B148;
     float: right;
 }
 
 .alert {
-    padding: 10px 0 0 0;
+    padding: 10px 10px 0 0;
     height: 10px;
     color: #F02323;
     float: right;
@@ -125,13 +129,13 @@ div h2 {
     float: left;
     width: 140px;
     /*background-color: #C5EAF8;*/
-    border-bottom: #8AD5F0 solid 1px;
+    /*border-bottom: #8AD5F0 solid 1px;*/
     margin: 100px 10px 0 0;
     position: fixed;
 }
 
 .menu li {
-    text-align: center;
+    text-align: right;
     /*list-style-type: none;*/
     /*padding: 5px 0;*/
 }
@@ -163,14 +167,14 @@ div h2 {
 
 .but:hover
 {
-    border-bottom: #83B600 solid 1px;    
+    border-bottom: #27B148 solid 1px;    
 }
 
-.but:active
+/*.but:active
 {
     background-color: #C5E26D;
     border-bottom: #83B600 solid 1px; 
-}
+}*/
 
 /* END BUTTON */
 
@@ -228,21 +232,37 @@ div h2 {
 }
 
 .notes_header {
+    padding: 10px 0 10px 0;
+    /*height: 35px;*/
     border-bottom: #ECECEC solid 1px;
 }
 
 a {
     text-decoration:  none;
     color: black;
+    padding: 0 3px 0 3px;
 }
 
 a:hover {
+    border-bottom: #8AD5F0 solid 1px;
+}
+
+a:active {
     border-bottom: #000000 solid 1px;
 }
 
 a:visited {
     color: black;
 }
+
+.modify, .modify:before, .modify:after {
+  font-size: 12px;
+}
+
+.current {
+    border-bottom: #8AD5F0 solid 1px;
+}
+
 
 /* Clear fix hack */
 .clearfix:after {
