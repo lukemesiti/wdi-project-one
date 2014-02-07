@@ -1,28 +1,22 @@
-== README
+# THREEthrees
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+THREEthrees.herokuapp.com
 
-Things you may want to cover:
+## About
+Planning your goals is one step of being productive, but it’s just as important to review those goals, set sub-tasks and provide context with larger objectives. Be Limitless shares a productivity trick to do all this: The Rule Of Three.
 
-* Ruby version
+The idea is to identify three outcomes you want to achieve for the year, then three for the week, and another three for the day. The blog post explains how to put it into action by using the weekly plan as an example. This app attempts to implement rule of three in an easy to use interface that is accessible anywhere with an Internet connection.
 
-* System dependencies
+## Ruby version
+ruby 2.0.0p353
 
-* Configuration
+## Database
+psql (PostgreSQL) 9.3.1
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Functionality
+* Create upto 3 daily tasks (per day)
+* Create upto 3 weekly tasks (per week)
+* Create upto 3 yearly tasks (per year)
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
