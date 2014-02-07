@@ -13,7 +13,7 @@ ruby 2.0.0p353
 == Database
 psql (PostgreSQL) 9.3.1
 
-## Functionality
+== Functionality
 * Create upto 3 daily tasks (per day)
 * Create upto 3 weekly tasks (per week)
 * Create upto 3 yearly tasks (per year)
