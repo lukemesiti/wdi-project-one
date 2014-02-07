@@ -41,6 +41,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @current = params[:category].to_sym
     # @current = :alltasks
   end
 

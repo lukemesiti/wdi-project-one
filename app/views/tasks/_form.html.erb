@@ -14,11 +14,11 @@
   <div class="field">
   <div class="field">
     <%= f.label :category %><br>
-    <% @current = params[:category] %>
     <% if params[:category] == 'all' %>
-      <%= f.select :category, [['daily', 'daily'], ['weekly', 'weekly'], ['yearly', 'yearly']] %>
+      <%= f.select :category, [['daily', 'daily'], ['weekly', 'weekly'], ['yearly', 'yearly']], {} , :class => 'select'  %>
     <% else %>
-      <% f.hidden_field :category, value: params[:category] %><%= params[:category] %>
+      <%= f.hidden_field :category, value: params[:category] %>
+      <%= params[:category] %>
     <% end %>
   </div>
     <%= f.label :name %><br>

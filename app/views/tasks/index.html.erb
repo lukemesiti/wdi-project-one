@@ -1,4 +1,4 @@
-<% content_for :title, "Listing Tasks" %>
+<% content_for :title, "#{params[:category]} tasks" %>
 
 <% unless (params[:complete].to_s == 'true') || (params[:previous].to_s == 'true') %>
     <div class="add_new_task">
@@ -15,6 +15,7 @@
         </ul>   
     </div>
 <% end %>
-<br>
+
+
 
 

@@ -1,12 +1,11 @@
-<div>
-  <strong>Name:</strong>
-  <%= @user.name %>
+<div class="task_block">
+    <ul>
+        <li>Name - <%= @user.name %></li>
+        <li>Email - <%= @user.email %></li>
+    </ul>    
 </div>
 
-<div>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</div>
 
-<%= link_to 'Edit', edit_user_path(@current_user) %> |
-<%= link_to 'Back', user_tasks_path(@current_user) %>
+
+<%= link_to 'Edit', edit_user_path(@current_user), :class => "modify" %> : :
+<%= link_to 'Back', user_tasks_path(@current_user), :class => "modify" %>

@@ -13,12 +13,14 @@
  */
 
 *, *:before, *:after {
-  -webkit-box-sizing: border-box; 
-  -moz-box-sizing: border-box; 
-  box-sizing: border-box;
-  font-family: Helvetica;
-  font-weight: 100;
-  font-size: 15px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+    font-family: Helvetica;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 1.1;
+
 }
 
 html {
@@ -39,22 +41,22 @@ li {
 
 h1 {
     font-family: 'Fenix', serif;
-    font-size: 40px;
+    font-size: 60px;
     margin: 5px;
     float: left;
-    line-height: 40px;
+    line-height: 60px;
 }
 
 h2 {
     font-family: 'Fenix', serif;
-    font-size: 25px;
+    font-size: 40px;
     display: inline-block;
     margin: 5px;
 }
 
 .head {
     margin: 10px 0 0 0;
-    min-height: 90px;
+    min-height: 110px;
     text-align: center;
     width: 600px;
     float: right;
@@ -118,7 +120,7 @@ div h2 {
 
 .container {
     margin: 0 auto;
-    width: 750px;
+    width: 790px;
     /*border: solid black 2px;*/
 }
 
@@ -127,17 +129,17 @@ div h2 {
 .menu {
     display: inline-block;
     float: left;
-    width: 140px;
+    width: 180px;
     /*background-color: #C5EAF8;*/
     /*border-bottom: #8AD5F0 solid 1px;*/
-    margin: 100px 10px 0 0;
+    margin: 124px 10px 0 0;
     position: fixed;
 }
 
 .menu li {
     text-align: right;
     /*list-style-type: none;*/
-    /*padding: 5px 0;*/
+    padding: 5px 0;
 }
 
 /* END MENU */
@@ -256,7 +258,7 @@ a:visited {
 }
 
 .modify, .modify:before, .modify:after {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .current {
