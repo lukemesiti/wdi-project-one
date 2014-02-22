@@ -9,26 +9,26 @@ class TasksController < ApplicationController
     @tasks = @current_user.tasks
       if params[:category] == 'daily'
         @current = :daily
-        @tasks = get_tasks_by_time_period(@current_user.tasks.daily, Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
+        @tasks = @current_user.tasks.current_daily
       elsif params[:category] == 'weekly'
         @current = :weekly
-        @tasks = get_tasks_by_time_period(@current_user.tasks.weekly, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+        @tasks = @current_user.tasks.current_weekly
       elsif params[:category] == 'yearly'
         @current = :yearly
-        @tasks = get_tasks_by_time_period(@current_user.tasks.yearly, Time.zone.now.beginning_of_year, Time.zone.now.end_of_year)
+        @tasks = @current_user.tasks.current_yearly
       elsif params[:complete].present?
         @current = :complete
         @tasks = @tasks.where("complete = ?", params[:complete])
       elsif params[:previous].present?
         @current = :previous
-        daily = get_tasks_before_time_period(@current_user, 'daily', Time.zone.now.beginning_of_day)
-        weekly = get_tasks_before_time_period(@current_user, 'weekly', Time.zone.now.beginning_of_week)
-        yearly = get_tasks_before_time_period(@current_user, 'yearly', Time.zone.now.beginning_of_year)
+        daily = @current_user.tasks.previous_daily
+        weekly = @current_user.tasks.previous_weekly
+        yearly = @current_user.tasks.previous_yearly
         @tasks = daily + weekly + yearly
       else
-        daily = get_tasks_by_time_period(@current_user.tasks.daily, Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
-        weekly = get_tasks_by_time_period(@current_user.tasks.weekly, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week) 
-        yearly = get_tasks_by_time_period(@current_user.tasks.yearly, Time.zone.now.beginning_of_year, Time.zone.now.end_of_year) 
+        daily = @current_user.tasks.current_daily
+        weekly = @current_user.tasks.current_weekly 
+        yearly = @current_user.tasks.current_yearly 
         @tasks = daily + weekly + yearly
         @tasks.sort_by { |t| t.category }
       end
@@ -57,9 +57,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    daily_task_count = get_tasks_by_time_period(@current_user.tasks.daily, Time.zone.now.beginning_of_day, Time.zone.now.end_of_day).count
-    weekly_task_count = get_tasks_by_time_period(@current_user.tasks.weekly, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week).count
-    yearly_task_count = get_tasks_by_time_period(@current_user.tasks.yearly, Time.zone.now.beginning_of_year, Time.zone.now.end_of_year).count
+    daily_task_count = @current_user.tasks.current_daily.count
+    weekly_task_count = @current_user.tasks.current_weekly.count
+    yearly_task_count = @current_user.tasks.current_yearly.count
 
     if @task.category == "daily" && daily_task_count >= 3
       redirect_to user_tasks_path, :alert => 'daily limit reached '
@@ -117,14 +117,6 @@ class TasksController < ApplicationController
           redirect_to user_tasks_path(@current_user.id) # , :notice => "Don't try to change the user!"
         end
       end
-    end
-
-    def get_tasks_by_time_period(user, date_from, date_to)
-      user.where("created_at >= ? AND created_at <= ?", date_from, date_to)
-    end
-
-    def get_tasks_before_time_period(user, category, date_to)
-      user.tasks.where("category = ? AND created_at <= ?", category, date_to)
     end
 
     # Never trust parameters from the internet, only allow the white list through.
