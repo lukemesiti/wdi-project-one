@@ -56,6 +56,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @task.user_id = @current_user.id
 
     daily_task_count = @current_user.tasks.current_daily.count
     weekly_task_count = @current_user.tasks.current_weekly.count
@@ -121,6 +122,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :category, :description, :complete, :user_id)
+      params.require(:task).permit(:name, :category, :description, :complete)
     end
 end
