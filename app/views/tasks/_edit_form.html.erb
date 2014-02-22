@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.select :category, ['daily', 'weekly', 'yearly'], {} , :class => 'select' %>
+    <%= f.select :category, Task::CATEGORIES, {} , :class => 'select' %>
   </div>
   <div class="field">
     <%= f.label :description %><br>

@@ -15,7 +15,7 @@
   <div class="field">
     <%= f.label :category %><br>
     <% if params[:category] == 'all' %>
-      <%= f.select :category, ['daily', 'weekly', 'yearly'], {} , :class => 'select'  %>
+      <%= f.select :category, Task::CATEGORIES, {} , :class => 'select'  %>
     <% else %>
       <%= f.hidden_field :category, value: params[:category] %>
       <%= params[:category] %>
