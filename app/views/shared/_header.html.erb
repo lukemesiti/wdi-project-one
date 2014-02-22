@@ -24,7 +24,9 @@
         <%= alert %>
     </div>
     <div class="alert">
-        <%= @user.errors.full_messages.first if @user.errors.any? %>
+        <% if @user %>
+            <%= @user.errors.full_messages.first if @user.errors.any? %>
+        <% end %>
     </div>
 
 
