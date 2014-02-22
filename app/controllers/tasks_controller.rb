@@ -9,13 +9,13 @@ class TasksController < ApplicationController
     @tasks = @current_user.tasks
       if params[:category] == 'daily'
         @current = :daily
-        @tasks = get_tasks_by_time_period(@current_user, params[:category], Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
+        @tasks = get_tasks_by_time_period(@current_user.tasks.daily, Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
       elsif params[:category] == 'weekly'
         @current = :weekly
-        @tasks = get_tasks_by_time_period(@current_user, params[:category], Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+        @tasks = get_tasks_by_time_period(@current_user.tasks.weekly, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
       elsif params[:category] == 'yearly'
         @current = :yearly
-        @tasks = get_tasks_by_time_period(@current_user, params[:category], Time.zone.now.beginning_of_year, Time.zone.now.end_of_year)
+        @tasks = get_tasks_by_time_period(@current_user.tasks.yearly, Time.zone.now.beginning_of_year, Time.zone.now.end_of_year)
       elsif params[:complete].present?
         @current = :complete
         @tasks = @tasks.where("complete = ?", params[:complete])
@@ -26,13 +26,15 @@ class TasksController < ApplicationController
         yearly = get_tasks_before_time_period(@current_user, 'yearly', Time.zone.now.beginning_of_year)
         @tasks = daily + weekly + yearly
       else
-        daily = get_tasks_by_time_period(@current_user, 'daily', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
-        weekly = get_tasks_by_time_period(@current_user, 'weekly', Time.zone.now.beginning_of_week, Time.zone.now.end_of_week) 
-        yearly = get_tasks_by_time_period(@current_user, 'yearly', Time.zone.now.beginning_of_year, Time.zone.now.end_of_year) 
+        daily = get_tasks_by_time_period(@current_user.tasks.daily, Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
+        weekly = get_tasks_by_time_period(@current_user.tasks.weekly, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week) 
+        yearly = get_tasks_by_time_period(@current_user.tasks.yearly, Time.zone.now.beginning_of_year, Time.zone.now.end_of_year) 
         @tasks = daily + weekly + yearly
         @tasks.sort_by { |t| t.category }
       end
   end
+
+
 
   # GET /tasks/1
   # GET /tasks/1.json
@@ -55,9 +57,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    daily_task_count = get_tasks_by_time_period(@current_user,'daily',Time.zone.now.beginning_of_day, Time.zone.now.end_of_day).count
-    weekly_task_count = get_tasks_by_time_period(@current_user,'weekly',Time.zone.now.beginning_of_week, Time.zone.now.end_of_week).count
-    yearly_task_count = get_tasks_by_time_period(@current_user,'yearly',Time.zone.now.beginning_of_year, Time.zone.now.end_of_year).count
+    daily_task_count = get_tasks_by_time_period(@current_user.tasks.daily, Time.zone.now.beginning_of_day, Time.zone.now.end_of_day).count
+    weekly_task_count = get_tasks_by_time_period(@current_user.tasks.weekly, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week).count
+    yearly_task_count = get_tasks_by_time_period(@current_user.tasks.yearly, Time.zone.now.beginning_of_year, Time.zone.now.end_of_year).count
 
     if @task.category == "daily" && daily_task_count >= 3
       redirect_to user_tasks_path, :alert => 'daily limit reached '
@@ -117,15 +119,15 @@ class TasksController < ApplicationController
       end
     end
 
-    def get_tasks_by_time_period(user, category, date_from, date_to)
-       user.tasks.where("category = ? AND created_at >= ? AND created_at <= ?", category, date_from, date_to)
+    def get_tasks_by_time_period(user, date_from, date_to)
+      user.where("created_at >= ? AND created_at <= ?", date_from, date_to)
     end
 
     def get_tasks_before_time_period(user, category, date_to)
       user.tasks.where("category = ? AND created_at <= ?", category, date_to)
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:name, :category, :description, :complete, :user_id)
     end
