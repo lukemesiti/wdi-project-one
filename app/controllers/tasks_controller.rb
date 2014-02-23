@@ -5,30 +5,26 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    category = params[:category]
     @current = :all
     @tasks = @current_user.tasks
-      if params[:category] == 'daily'
-        @current = :daily
-        @tasks = @current_user.tasks.current_daily
-      elsif params[:category] == 'weekly'
-        @current = :weekly
-        @tasks = @current_user.tasks.current_weekly
-      elsif params[:category] == 'yearly'
-        @current = :yearly
-        @tasks = @current_user.tasks.current_yearly
+
+    if category.present? && Task::CATEGORIES.include?(category)
+      @current = category.to_sym
+      @tasks = @tasks.send(category)
       elsif params[:complete].present?
         @current = :complete
-        @tasks = @tasks.where("complete = ?", params[:complete])
+        @tasks = @tasks.where(complete: params[:complete])
       elsif params[:previous].present?
         @current = :previous
-        daily = @current_user.tasks.previous_daily
-        weekly = @current_user.tasks.previous_weekly
-        yearly = @current_user.tasks.previous_yearly
+        daily = @tasks.previous_daily
+        weekly = @tasks.previous_weekly
+        yearly = @tasks.previous_yearly
         @tasks = daily + weekly + yearly
       else
-        daily = @current_user.tasks.current_daily
-        weekly = @current_user.tasks.current_weekly 
-        yearly = @current_user.tasks.current_yearly 
+        daily = @tasks.daily
+        weekly = @tasks.weekly 
+        yearly = @tasks.yearly 
         @tasks = daily + weekly + yearly
         @tasks.sort_by { |t| t.category }
       end
@@ -58,9 +54,9 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = @current_user.id
 
-    daily_task_count = @current_user.tasks.current_daily.count
-    weekly_task_count = @current_user.tasks.current_weekly.count
-    yearly_task_count = @current_user.tasks.current_yearly.count
+    daily_task_count = @current_user.tasks.daily.count
+    weekly_task_count = @current_user.tasks.weekly.count
+    yearly_task_count = @current_user.tasks.yearly.count
 
     if @task.category == "daily" && daily_task_count >= 3
       redirect_to user_tasks_path, :alert => 'daily limit reached '
