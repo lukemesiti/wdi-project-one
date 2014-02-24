@@ -1,5 +1,3 @@
-change 123456
-
 == THREEthrees
 
 THREEthrees.herokuapp.com
