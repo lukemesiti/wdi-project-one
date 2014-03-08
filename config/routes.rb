@@ -5,6 +5,10 @@ Threethrees::Application.routes.draw do
       resources :notes, shallow: true
     end
   end
+
+  resources :inquiries, :only => [:new, :create] do
+    get 'thank_you', :on => :collection
+  end
   
   get '/login' => "session#new", :as => :new_session
   post '/login' => "session#create"

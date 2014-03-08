@@ -28,6 +28,13 @@
             <%= @user.errors.full_messages.first if @user.errors.any? %>
         <% end %>
     </div>
+    <% if @inquiry.errors.any? %>
+        <div class="alert">
+            <% @inquiry.errors.full_messages.each do |msg| %>
+                <%= msg %>
+            <% end %>
+        </div>
+    <% end %>
 
 
 </div>
