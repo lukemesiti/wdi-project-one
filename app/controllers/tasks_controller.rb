@@ -8,6 +8,7 @@ class TasksController < ApplicationController
     category = params[:category]
     @current = :all
     @tasks = @current_user.tasks
+    @showing_all_tasks = false
 
     if category.present? && Task::CATEGORIES.include?(category)
       @current = category.to_sym
@@ -15,12 +16,14 @@ class TasksController < ApplicationController
       elsif params[:complete].present?
         @current = :complete
         @tasks = @tasks.where(complete: params[:complete])
+        @showing_all_tasks = true
       elsif params[:previous].present?
         @current = :previous
         daily = @tasks.previous_daily
         weekly = @tasks.previous_weekly
         yearly = @tasks.previous_yearly
         @tasks = daily + weekly + yearly
+        @showing_all_tasks = true
       else
         daily = @tasks.daily
         weekly = @tasks.weekly 
@@ -111,7 +114,7 @@ class TasksController < ApplicationController
     def check_user
       if params[:user_id].present?
         if params[:user_id].to_i != @current_user.id.to_i
-          redirect_to user_tasks_path(@current_user.id) # , :notice => "Don't try to change the user!"
+          redirect_to user_tasks_path(@current_user.id) 
         end
       end
     end
