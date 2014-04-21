@@ -6,7 +6,7 @@ Pony.options = {
         :port                   => '587',
         :enable_startls_auto    => true,
         :user_name              => 'threethreesapp',
-        :password               => 'cheeseburger24',
+        :password               => 'Welcome12#',
         :authentication         => :plain,
         :domain                 => "localhost.localdomain"
     }

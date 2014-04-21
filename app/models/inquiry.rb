@@ -3,13 +3,14 @@ class Inquiry
     include ActiveModel::Conversion
     include ActiveModel::Validations
     include ActionView::Helpers::TextHelper
-    include ActionView::Helpers::OutputSafetyHelper
+    # include ActionView::Helpers::OutputSafetyHelper
 
-    attr_accessor :name, :email, :message
+    attr_accessor :nickname, :name, :email, :message
 
     validates :name, :presence => true
     validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/}
     validates :message, :length => { :minimum => 10, :maximum => 1000 }
+    validates :nickname, :format => { :with => /\A\z/ }
 
 
     def initialize(attributes = {})
@@ -21,11 +22,10 @@ class Inquiry
     def deliver
         return false unless valid?
         Pony.mail({
-            :from => %("#{name}" <#{email}>),
-            :reply_to => email,
-            :subject => "Website inquiry",
-            :body => message,
-            :html_body => simple_format(message)
+          :from => %("#{name}" <#{email}>),
+          :reply_to => email,
+          :subject => "Website inquiry",
+          :body => message
         })
     end
 

@@ -1,6 +1,6 @@
 <% content_for :title, "#{params[:category]} tasks" %>
 
-<% unless (params[:complete].to_s == 'true') || (params[:previous].to_s == 'true') %>
+<% unless @showing_all_tasks %>
     <div class="add_new_task">
         <%= link_to 'Add New Task', new_user_task_path(:user_id => @current_user.id, :category => @current) %>
     </div>

@@ -15,7 +15,7 @@
   <div class="field">
     <%= f.label :category %><br>
     <% if params[:category] == 'all' %>
-      <%= f.select :category, Task::CATEGORIES, {} , :class => 'select'  %>
+      <%= f.select :category, Task::CATEGORIES %>
     <% else %>
       <%= f.hidden_field :category, value: params[:category] %>
       <%= params[:category] %>
@@ -31,6 +31,6 @@
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit :class => "but" %>
+    <%= f.submit :class => "btn" %>
   </div>
 <% end %>

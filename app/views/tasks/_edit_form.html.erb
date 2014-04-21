@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.select :category, Task::CATEGORIES, {} , :class => 'select' %>
+    <%= f.select :category, Task::CATEGORIES %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -28,6 +28,6 @@
     <%= f.check_box :complete %>
   </div>
   <div class="actions">
-    <%= f.submit :class => "but" %>
+    <%= f.submit :class => "btn" %>
   </div>
 <% end %>
