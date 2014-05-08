@@ -9,13 +9,14 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require normalize-rails
  *= require_tree .
  */
 
 @import "bootstrap";
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family-base: 'Open Sans', sans-serif;
   font-weight: 300;
   font-size: 24px;
   color: #666666;
