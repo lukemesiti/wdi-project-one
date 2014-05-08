@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Threethrees</title>
-  <link href='http://fonts.googleapis.com/css?family=Fenix' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -39,7 +39,7 @@
                     <li><%= link_to "about us", "/pages/about_us" %></li>
                     <li><%= link_to "contact us", "/inquiries/new" %></li>
                     <li><%= link_to "inspired by", "/pages/references" %></li>
-                    <li>
+                </ul>                    
                         <script>
 // Include the UserVoice JavaScript SDK (only needed once on a page)
 UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/CwXqSqzt5ubc989hIpiITA.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
@@ -83,8 +83,7 @@ UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right
 // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
 UserVoice.push(['autoprompt', {}]);
 </script>
-                    </li>
-                </ul>
+
             </div>
 
         <% end %>
