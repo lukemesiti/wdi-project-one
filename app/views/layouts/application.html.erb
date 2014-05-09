@@ -14,31 +14,16 @@
             <%= render :partial => "shared/header" %>
         </div>
 
-        <% if logged_in? %>
-            <div class="menu">
-                <ul>
-                    <li><%= link_to "All Current Tasks", user_tasks_path(:user_id => @current_user.id, :category => "all"), :class => ('current' if (@current == :all)) %></li>
-                    <li><%= link_to "Daily Tasks", user_tasks_path(:user_id => @current_user.id, :category => "daily"), :class => ('current' if (@current == :daily)) %></li>
-                    <li><%= link_to "Weekly Tasks", user_tasks_path(:user_id => @current_user.id, :category => "weekly"), :class => ('current' if (@current == :weekly)) %></li>
-                    <li><%= link_to "Yearly Tasks", user_tasks_path(:user_id => @current_user.id, :category => "yearly"), :class => ('current' if (@current == :yearly)) %></li>
-                    <br>
-                    <li><%= link_to "Completed Tasks", user_tasks_path(:user_id => @current_user.id, :complete => "true", :category => "complete"), :class => ('current' if (@current == :complete)) %></li>
-                    <li><%= link_to "Previous Tasks", user_tasks_path(:user_id => @current_user.id, :previous => "true", :category => "previous"), :class => ('current' if (@current == :previous)) %></li>
-                    <br>
-                    <li><%= link_to "Edit Profile", edit_user_path(@current_user), :class => ('current' if (@current == :edit)) %></li>
-                </ul>   
-            </div><!-- menu -->
-        <% end %>
-
         <div class="content">
             <%= yield %>
         </div><!-- content -->
 
-        <% if logged_in? %>
             <div class="foot">
                 <ul>
                     <li><%= link_to "about us", "/pages/about_us" %></li>
-                    <li><%= link_to "contact us", "/inquiries/new" %></li>
+                    <% if logged_in? %>
+                      <li><%= link_to "contact us", "/inquiries/new" %></li>
+                    <% end %>
                     <li><%= link_to "inspired by", "/pages/references" %></li>
                 </ul>                    
                         <script>
@@ -85,7 +70,6 @@
                           UserVoice.push(['autoprompt', {}]);
                         </script>
             </div>
-        <% end %>
     </div><!-- container -->
 
 <script>
