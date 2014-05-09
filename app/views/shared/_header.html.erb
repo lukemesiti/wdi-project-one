@@ -1,18 +1,44 @@
-<div class="clearfix">
-    <div>
-        <h1>THREEthrees</h1>
-    </div>
-    <div>
-        <% if logged_in? %>
-            <ul>
-                <li><%= link_to 'logout', session_path, :method => :delete %></li>
-                <li>Welcome, <%= @current_user.name %></li>
-            </ul>
-        <% end %>
-    </div>   
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to "THREEthrees", "/", :class => "navbar-brand" %>
+        </div>
+        <div class="navbar-collapse collapse">
+            <% if logged_in? %>
+                <ul class="nav navbar-nav">
+                    <li><%= link_to "All Current", user_tasks_path(:user_id => @current_user.id, :category => "all"), :class => ('current' if (@current == :all)) %></li>
+                    <li><%= link_to "Daily", user_tasks_path(:user_id => @current_user.id, :category => "daily"), :class => ('current' if (@current == :daily)) %></li>
+                    <li><%= link_to "Weekly", user_tasks_path(:user_id => @current_user.id, :category => "weekly"), :class => ('current' if (@current == :weekly)) %></li>
+                    <li><%= link_to "Yearly", user_tasks_path(:user_id => @current_user.id, :category => "yearly"), :class => ('current' if (@current == :yearly)) %></li>
+                    <li><%= link_to "Completed", user_tasks_path(:user_id => @current_user.id, :complete => "true", :category => "complete"), :class => ('current' if (@current == :complete)) %></li>
+                    <li><%= link_to "Previous", user_tasks_path(:user_id => @current_user.id, :previous => "true", :category => "previous"), :class => ('current' if (@current == :previous)) %></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <%= @current_user.name %> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><%= link_to "Edit Profile", edit_user_path(@current_user), :class => ('current' if (@current == :edit)) %></li>
+                            <li><%= link_to 'logout', session_path, :method => :delete %></li>
+                        </ul>
+                    </li>
+                </ul>
+            <% else %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><%= link_to "sign in", login_path %></li>
+                </ul>
+            <% end %>
+        </div>
+    </div>  
 </div>
 
-<div class="clearfix">
+<div>
     <div>
         <h2><%= content_for (:title) %></h2>
     </div>
