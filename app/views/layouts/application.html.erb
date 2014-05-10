@@ -20,11 +20,14 @@
 
             <div class="foot">
                 <ul>
-                    <li><%= link_to "about us", "/pages/about_us" %></li>
+                    <li><%= link_to "about the app", "/pages/about_us" %></li>
                     <% if logged_in? %>
                       <li><%= link_to "contact us", "/inquiries/new" %></li>
                     <% end %>
                     <li><%= link_to "inspired by", "/pages/references" %></li>
+                </ul>
+                <ul>
+                  <li>&copy; 3x3 2014</li>
                 </ul>                    
                         <script>
                           // Include the UserVoice JavaScript SDK (only needed once on a page)

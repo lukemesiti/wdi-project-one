@@ -21,8 +21,23 @@ body {
   font-size: 24px;
   color: #666666;
   -webkit-font-smoothing: antialiased; 
+  padding-top: 50px;
 }
 
 .container {
     max-width: 1200px;
+}
+
+.foot {
+    border-top: 2px solid #666666;
+    text-align: center;
+
+    ul {
+        list-style-type: none;
+
+        li {
+            display: inline-block;
+            padding: 10px;
+        }
+    }
 }
