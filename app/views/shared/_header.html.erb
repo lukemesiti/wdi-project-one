@@ -42,18 +42,25 @@
     <div class="contextual-heading">
         <h2><%= content_for (:title) %></h2>
     </div>
-
-    <div class="notice">
-        <%= notice %>
-    </div>
-    <div class="alert">
-        <%= alert %>
-    </div>
-    <div class="alert">
-        <% if @user %>
+    
+    <% if notice %>
+        <div class="notice">
+            <%= notice %>
+        </div>
+    <% end %>
+    
+    <% if alert %>
+        <div class="alert">
+            <%= alert %>
+        </div>
+    <% end %>
+    
+    <% if @user %>
+        <div class="alert">
             <%= @user.errors.full_messages.first if @user.errors.any? %>
-        <% end %>
-    </div>
+        </div>
+    <% end %>
+
     <% if @inquiry %>
         <% if @inquiry.errors.any? %>
             <div class="alert">

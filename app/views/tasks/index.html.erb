@@ -7,11 +7,16 @@
 <% end %>
 
 <% @tasks.each do |task| %>
-    <div class="task_block">
+    <div class="task-block">
         <ul>
-            <li><%= task.name %>, <%= task.category %></li>
-            <li><%= task.description %></li>
-            <li><%= link_to 'Show', task,  :class => "modify" %> : : <%= link_to 'Edit', edit_task_path(task), :class => "modify" %> : : <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => "modify" %></li>
+            <li><%= task.name %> (<%= task.category %>) <%= link_to 'Edit', edit_task_path(task), :class => "modify" %> : : <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => "modify" %></li>
+            <% if task.description.present? %>
+                <li><%= task.description %></li>
+            <% end %>
+            <li><%= link_to 'Add Note', new_task_note_path(task), :class => "modify" %> 
+                <% if task.notes.present? %>
+                 : : <%= link_to 'View Notes', task_path(task), :class => "modify" %></li>
+                <% end %>
         </ul>   
     </div>
 <% end %>

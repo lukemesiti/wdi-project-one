@@ -4,7 +4,7 @@
     <ul>
       <li><%= @task.name %>, <%= @task.category %></li>
       <li><%= @task.description %></li>
-      <li><%= link_to 'Edit', edit_task_path(@task), :class => "modify" %> : : <%= link_to 'Back', user_tasks_path(:user_id => @current_user.id, :category => "all"), :class => "modify" %> : : <%= link_to 'New Note', new_task_note_path(@task), :class => "modify" %></li>
+      <li><%= link_to 'Edit', edit_task_path(@task), :class => "modify" %> : : <%= link_to 'New Note', new_task_note_path(@task), :class => "modify" %></li>
   </ul>
 </div>
 
