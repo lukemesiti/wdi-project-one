@@ -9,9 +9,9 @@
               <span class="icon-bar"></span>
             </button>
             <% if logged_in? %>
-                <%= link_to "3x3", user_tasks_path(:user_id => @current_user.id, :category => "all"), :class => ["navbar-brand", ('current' if (@current == :all))] %>
+                <%= link_to "THREEthrees", user_tasks_path(:user_id => @current_user.id, :category => "all"), :class => ["navbar-brand", ('current' if (@current == :all))] %>
             <% else %>
-                <%= link_to "3x3", "/", :class => "navbar-brand" %>
+                <%= link_to "THREEthrees", "/", :class => "navbar-brand" %>
             <% end %>
         </div>
         <div class="navbar-collapse collapse">
