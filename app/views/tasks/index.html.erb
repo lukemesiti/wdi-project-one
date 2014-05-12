@@ -1,4 +1,4 @@
-<% content_for :title, "#{params[:category].titleize if params.present? } Tasks" %>
+<% content_for :title, "#{params[:category].titleize if !params[:category].blank? } Tasks" %>
 
 <% unless @showing_all_tasks %>
     <div class="add-new-task">
