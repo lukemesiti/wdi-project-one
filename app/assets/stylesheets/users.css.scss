@@ -1,3 +1,60 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.sign-up-box {
+    display: inline;
+    float: left;
+    max-width: 400px;
+    padding: 15px;
+    border: 1px solid #666666;
+    border-radius: 5px;
+    margin: 0 0 15px 0;
+
+    h2 {
+        margin: 0 0 15px 0;
+    }
+
+    .actions {
+        height: 42px;
+    }
+
+
+    .form-control {
+        margin: 0 0 15px 0;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .btn {
+        width: 368px;
+        border: 1px solid #666;
+        color: #428bca;
+        background-color: #f8f8f8;
+        font-size: 20px;
+    }
+
+    .btn:hover {
+        background-color: #d6d6d6;
+    }
+
+    .sub-heading {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        border-bottom: 1px solid #666;
+        line-height: 0.09em; 
+        margin: 10px 0 10px 0;
+
+        span {
+            background: white;
+            padding: 0 10px;
+        }
+    }
+
+    .create-account {
+        margin: 22px 0 0 0;
+    }
+}
+
+.inspired {
+    display: inline;
+    float: right;
+    max-width: 600px;
+}
