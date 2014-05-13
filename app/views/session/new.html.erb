@@ -1,24 +1,25 @@
 <div class="sign-in-box">
     <%= form_tag do %>
         <div class="field">
-            <%= label_tag :username %>
-            <%= text_field_tag :username %>  
+            <%= text_field_tag :username, nil, placeholder: 'Username', class: 'form-control' %>  
         </div>
         <div class="field">
-            <%= label_tag :password %>
-            <%= password_field_tag :password %>    
+            <%= password_field_tag :password, nil, placeholder: 'Password', class: 'form-control' %>    
         </div>
         <div class="actions">
-            <div><%= submit_tag 'login', :class => "btn" %></div><br>
-            <div><%= link_to "Don't have a profile? Click here to sign up!", new_user_path %></div>
+            <div><%= submit_tag 'Sign In', :class => "btn" %></div><br>
+        </div>
+        <div>
+            <div class="sub-heading"><span>OR</span></div>
+            <div class="create-account"><%= link_to "Create New Account", new_user_path, class: 'btn' %></div>
         </div>
     <% end %>
 </div>
 
-<div class="clearfix about">
-    <h2>About THREEthrees</h2>
+<div class="about">
+    <h2>About the app</h2>
 
-    <p>A simple todo list app. Inspired by the idea that too many options can sometimes be a bad thing.</p>
+    <p>This is a simple todo list app. Inspired by the idea that too many options can sometimes be a bad thing.</p>
 
     <p>The idea behind THREEthrees is to identify three outcomes you want to achieve for the year, then three for the week, and another three for the day. <a href="http://blog.belimitless.co/post/73416815446/the-rule-of-3" target="_blank">The rule of 3</a> blog post explains how to put it into action by using the weekly plan as an example. This app attempts to implement rule of three in an easy to use interface that is accessible anywhere with an Internet connection.</p>
 </div>
