@@ -3,19 +3,50 @@
     float: right;
     max-width: 400px;
     padding: 15px;
-    margin: 0 0 0 15px;
     border: 1px solid #666666;
+    border-radius: 5px;
+
+
+    .form-control {
+        margin: 0 0 15px 0;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .btn {
+        width: 368px;
+        border: 1px solid #666;
+        color: #428bca;
+        background-color: #f8f8f8;
+        font-size: 20px;
+    }
+
+    .btn:hover {
+        background-color: #d6d6d6;
+    }
+
+    .sub-heading {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        border-bottom: 1px solid #666;
+        line-height: 0.1em; margin: 10px 0 20px;
+        margin: 0 0 32px 0;
+
+        span {
+            background: white;
+            padding: 0 10px;
+        }
+    }
 }
 
 .about {
     display: inline;
-    max-width: 785px;
-    overflow: hidden;
-
-    p {
-        padding: 15px 0;
-    }
+    float: left;
+    max-width: 600px;
 }
+
+
 
 /* Clear fix hack */
 .clearfix:after {
