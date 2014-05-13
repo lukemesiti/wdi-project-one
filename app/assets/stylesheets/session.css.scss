@@ -54,15 +54,3 @@
     float: left;
     max-width: 600px;
 }
-
-
-
-/* Clear fix hack */
-.clearfix:after {
-     content: ".";
-     display: block;
-     clear: both;
-     visibility: hidden;
-     line-height: 0;
-     height: 0;
-}
