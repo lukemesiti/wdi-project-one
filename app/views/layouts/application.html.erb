@@ -14,20 +14,20 @@
             <%= render :partial => "shared/header" %>
         </div>
 
-        <div class="content">
+        <div class="container content">
             <%= yield %>
         </div><!-- content -->
 
             <div class="foot">
+              <% if logged_in? %>
                 <ul>
-                    <li><%= link_to "About The App", "/pages/about_us" %></li>
-                    <% if logged_in? %>
-                      <li><%= link_to "Contact Us", "/inquiries/new" %></li>
-                    <% end %>
-                    <li><%= link_to "Inspired By", "/pages/references" %></li>
+                  <li><%= link_to "About The App", "/pages/about_us" %></li>
+                  <li><%= link_to "Contact Us", "/inquiries/new" %></li>
+                  <li><%= link_to "Inspired By", "/pages/references" %></li>
                 </ul>
+              <% end %>
                 <ul>
-                  <li>&copy; 3x3 2014</li>
+                  <li>&copy; THREEthrees 2014</li>
                 </ul>                    
                         <script>
                           // Include the UserVoice JavaScript SDK (only needed once on a page)
