@@ -20,28 +20,41 @@
         </div>
 
         <div class="notice-alerts">
-          <% if notice %>
-              <div class="notice">
-                  <%= notice %>
-              </div>
-          <% elsif alert %>
-              <div class="alert">
-                  <%= alert %>
-              </div>
-          <% elsif @user %>
-              <div class="alert">
-                  <%= @user.errors.full_messages.first if @user.errors.any? %>
-              </div>
-          <% elsif @inquiry %>
+
+          <div class="notice">
+            <% if notice %>
+              <%= notice %>
+            <% end %>
+          </div>
+
+          <div class="alert">
+            <% if alert %>
+              <%= alert %>
+            <% elsif @user %>
+              <%= @user.errors.full_messages.first if @user.errors.any? %>
+            <% elsif @inquiry %>
               <% if @inquiry.errors.any? %>
-                  <div class="alert">
-                      <% @inquiry.errors.full_messages.each do |msg| %>
-                          <%= msg %>
-                      <% end %>
-                  </div>
+                <% @inquiry.errors.full_messages.each do |msg| %>
+                  <%= msg %>
+                <% end %>
               <% end %>
-          <% end %>
+            <% elsif @task %>
+              <% if @task.errors.any? %>
+                <% @task.errors.full_messages.each do |msg| %>
+                  <%= msg %>
+                <% end %>
+              <% end %> 
+            <% elsif @note %>
+              <% if @ntoe.errors.any? %>
+                <% @note.errors.full_messages.each do |msg| %>
+                  <%= msg %>
+                <% end %>
+              <% end %>               
+            <% end %>
+          </div>
+
         </div>
+
       </div>
 
       <div class="container content">
