@@ -6,6 +6,14 @@
     </div>
 <% end %>
 
+<% if @tasks == [] %>
+    <div class="task-block">
+        <ul>
+            <li>There are no <%= params[:category] %> tasks</li>
+        </ul>
+    </div>
+<% end %>
+
 <% @tasks.each do |task| %>
     <div class="task-block">
         <ul>
@@ -21,6 +29,7 @@
             
         </ul>   
     </div>
+
 <% end %>
 
 
