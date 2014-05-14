@@ -44,7 +44,6 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @current = params[:category].to_sym
-    # @current = :alltasks
   end
 
   # GET /tasks/1/edit
@@ -54,7 +53,7 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = Task.new(task_params).valid?
     @task.user_id = @current_user.id
 
     daily_task_count = @current_user.tasks.daily.count
