@@ -25,7 +25,7 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(note_params)
+    @note = Note.new(note_params).valid?
 
     respond_to do |format|
       if @note.save
