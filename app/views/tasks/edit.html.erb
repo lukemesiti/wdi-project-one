@@ -1,6 +1,11 @@
 <% content_for :title, "editing task" %>
 
-<%= render 'edit_form' %>
+<div class="box"> 
+    <%= render 'edit_form' %>
+</div>
 
-<%= link_to 'Show', @task, :class => "modify" %> : :
-<%= link_to 'Back', user_tasks_path(:user_id => @current_user.id, :category => "all"), :class => "modify" %>
+<div class="page-navigation">
+    <%= link_to 'Show', @task, :class => "modify" %> : :
+    <%= link_to 'Back', user_tasks_path(:user_id => @current_user.id, :category => "all"), :class => "modify" %>
+</div>
+
