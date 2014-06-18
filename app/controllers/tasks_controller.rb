@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params).valid?
+    @task = Task.new(task_params)
     @task.user_id = @current_user.id
 
     daily_task_count = @current_user.tasks.daily.count
@@ -68,7 +68,8 @@ class TasksController < ApplicationController
       redirect_to user_tasks_path, :alert => 'yearly limit reached '
     else
       respond_to do |format|
-        if @task.save
+        if @task.valid?
+          @task.save
           format.html { redirect_to @task, notice: 'Task was successfully created.' }
           format.json { render action: 'show', status: :created, location: @task }
         else
@@ -77,6 +78,7 @@ class TasksController < ApplicationController
         end
       end
     end
+
   end
 
   # PATCH/PUT /tasks/1
